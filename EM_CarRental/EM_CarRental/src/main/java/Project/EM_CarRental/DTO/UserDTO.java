@@ -1,20 +1,20 @@
 package Project.EM_CarRental.DTO;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@Builder
 public class UserDTO {
 
     private Long id;
     private String username;
     private String password;
-    private String firstName;
+    private String name;
     private String lastName;
     private String email;
-    private String phone;
+    private Integer phone;
 
 
 }

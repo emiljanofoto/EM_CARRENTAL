@@ -3,10 +3,14 @@ package Project.EM_CarRental.Mapper;
 
 import Project.EM_CarRental.DTO.CarDTO;
 import Project.EM_CarRental.Entities.Car;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Service
-public class CarDTOMApper {
+public class CarDTOMapper {
 
     public static Car mapToCar(CarDTO carDTO) {
 

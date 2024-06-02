@@ -35,7 +35,7 @@ public class CarCategory {
     private Integer numberOfDoors;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "carParameters")
+    @OneToOne(mappedBy = "carCategory")
     private Car car;
 
 }
