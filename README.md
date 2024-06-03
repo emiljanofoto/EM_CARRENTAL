@@ -23,9 +23,11 @@ The software is using Swagger, so after running navigate to:
 http://localhost:8080/swagger-ui.html
 
 To login, enter the username and password for the account with selected role:
-Role	Username  Password
-User	user	  user
+
+User	user	  user 
+or
 Manager	manager	  manager
+or
 Admin	admin	  admin
 
 
