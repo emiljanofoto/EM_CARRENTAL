@@ -33,7 +33,7 @@ public class Order {
     private LocalTime dateTo;
 
     @OneToOne(optional = false)
-    @JoinColumn(name ="car_id", referencedColumnName = "id")
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
 
@@ -41,6 +41,5 @@ public class Order {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-
-
+    
 }

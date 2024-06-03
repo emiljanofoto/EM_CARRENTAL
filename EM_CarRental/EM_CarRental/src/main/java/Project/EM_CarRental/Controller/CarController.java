@@ -53,7 +53,7 @@ public class CarController {
         carService.deleteCar(id);
     }
 
-    @PutMapping("/cars/{id}/parameters")
+    @PutMapping("/cars/{id}/category")
     public Car setCarCategory(@PathVariable Long id, @RequestBody CarCategory carCategory) {
         return carService.setCarCategory(id, carCategory);
 

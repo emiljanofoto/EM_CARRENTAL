@@ -1,6 +1,7 @@
 package Project.EM_CarRental.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +40,15 @@ public class User {
 
     @Column(name = "phone", nullable = false)
     private Integer phone;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user",orphanRemoval = true)
+    private CreditCard creditCard;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user",orphanRemoval = true)
+    private OrderNumber orderNumber;
+
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

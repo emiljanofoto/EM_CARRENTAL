@@ -8,11 +8,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserSecurity {
+public class UserLogInSecurity {
 
     private final UserRepository userRepository;
 
-    public UserSecurity(UserRepository userRepository) {this.userRepository = userRepository;}
+    public UserLogInSecurity(UserRepository userRepository) {this.userRepository = userRepository;}
 
     public User getUser() {
         Authentication principal = SecurityContextHolder.getContext().getAuthentication();

@@ -1,9 +1,12 @@
 package Project.EM_CarRental.Service;
 
+import Project.EM_CarRental.DTO.CreditCardDTO;
 import Project.EM_CarRental.DTO.UserDTO;
+import Project.EM_CarRental.Entities.CreditCard;
 import Project.EM_CarRental.Entities.Role;
 import Project.EM_CarRental.Entities.User;
 import Project.EM_CarRental.Mapper.UserDTOMapper;
+import Project.EM_CarRental.Repository.CreditCardRepository;
 import Project.EM_CarRental.Repository.RoleRepository;
 import Project.EM_CarRental.Repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -14,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +32,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final CreditCardRepository creditCardRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -61,14 +66,14 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteUser(Long id) {
-        if (!userRepository.findById(id).isPresent()) {
+        if (userRepository.findById(id).isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
         }
         userRepository.deleteById(id);
     }
 
     public Role saveRole(Role role) {
-        if (!roleRepository.findByName(role.getName()).isPresent()) {
+        if (roleRepository.findByName(role.getName()).isEmpty()) {
             throw new UsernameNotFoundException("Role not found!");
         }
         return roleRepository.save(role);
@@ -97,10 +102,34 @@ public class UserService implements UserDetailsService {
         role.getUsers().remove(user);
     }
 
+
+
+    public User addCreditCardToUser(String username, CreditCardDTO creditCardDTO) {
+
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
+        if (user.getCreditCard() != null) {
+            throw new UsernameNotFoundException("Credit Card already exists for the user!");
+        }
+        CreditCard creditCard = creditCardRepository.save(mapToCreditCard(creditCardDTO));
+        user.setCreditCard(creditCard);
+        creditCard.setUser(user);
+        return userRepository.save(user);
+
+    }
+
+    public void deleteCreditCardFromUser(String username) {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
+
+        if (user.getCreditCard() == null) {
+            throw new UsernameNotFoundException("Credit Card not found!");
+        }
+        creditCardRepository.delete(user.getCreditCard());
+
+
+    }
+
     public List<UserDTO> getAllUsers() {
         return UserDTOMapper.mapUserToUserDTO(userRepository.findAll());
 
     }
-
-
 }

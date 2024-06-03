@@ -32,7 +32,7 @@ public class Car {
     private String color;
 
     @Column(name="is_available", nullable=false)
-    private boolean isAvailable;
+    private Boolean isAvailable;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "car_package_id", referencedColumnName = "id")

@@ -1,6 +1,7 @@
 package Project.EM_CarRental.Mapper;
 
 import Project.EM_CarRental.DTO.UserDTO;
+import Project.EM_CarRental.Entities.CreditCard;
 import Project.EM_CarRental.Entities.User;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserDTOMapper {
+
+    public static final CreditCard CREDIT_CARD = null;
 
     public static List<UserDTO> mapUserToUserDTO(List<User> users) {
         return users.stream()
@@ -29,6 +32,7 @@ public class UserDTOMapper {
                 .password(userDTO.getPassword())
                 .email(userDTO.getEmail())
                 .phone(userDTO.getPhone())
+                .creditCard(CREDIT_CARD)
                 .roles(new ArrayList<>())
                 .build();
     }
