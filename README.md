@@ -2,7 +2,7 @@ EM_CarRental
 
 This is a web-based application designed to function as a car rental service. 
 Users can browse through a selection of available vehicles, pay for their chosen rental package, and then pick up their selected car. 
-The primary motivation behind developing this application was to gain proficiency in JUnit and Mockito testing frameworks.
+
 
 To build and run the application, ensure you have the following:
 
