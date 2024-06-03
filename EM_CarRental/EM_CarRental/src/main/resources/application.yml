@@ -9,6 +9,8 @@ spring:
     username: root
     password: root
 
+
+
   jpa:
     hibernate:
       ddl-auto: create
@@ -25,3 +27,6 @@ spring:
 #jwt:
   #expirationTime: 3600000
  # secretKey: emcarrental
+
+
+

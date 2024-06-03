@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@NoArgsConstructor
 @Service
 public class CarDTOMapper {
 

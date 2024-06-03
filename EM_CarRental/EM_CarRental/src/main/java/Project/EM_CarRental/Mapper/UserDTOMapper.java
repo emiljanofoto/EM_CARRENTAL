@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
-@NoArgsConstructor
 public class UserDTOMapper {
 
     public static List<UserDTO> mapUserToUserDTO(List<User> users) {

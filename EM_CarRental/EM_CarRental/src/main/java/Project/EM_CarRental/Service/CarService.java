@@ -19,7 +19,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 
-import static Project.EM_CarRental.Mapper.CarDTOMApper.mapToCar;
+
+import static Project.EM_CarRental.Mapper.CarDTOMapper.mapToCar;
 import static Project.EM_CarRental.Mapper.CarPackageDTOMapper.mapToCarPackage;
 import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZE;
 

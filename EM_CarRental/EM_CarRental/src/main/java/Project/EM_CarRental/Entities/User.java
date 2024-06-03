@@ -37,7 +37,7 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "phone", nullable = false)
     private Integer phone;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
