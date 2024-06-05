@@ -17,7 +17,7 @@ public class CarDTOMapper {
                 .model(carDTO.getModel())
                 .year(carDTO.getYear())
                 .color(carDTO.getColor())
-                .isAvailable(carDTO.isAvailable())
+                .isAvailable(carDTO.getIsAvailable())
                 .build();
     }
 }

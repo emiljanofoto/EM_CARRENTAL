@@ -13,7 +13,7 @@ public class DeliveryController {
 
     private final DeliveryController deliveryController;
 
-    @PostMapping("/order_confirmation")
+    @PostMapping("/delivery")
     public Car carPickUp(@RequestBody Long carId) {
         return deliveryController.carPickUp(carId);
     }

@@ -24,9 +24,6 @@ spring:
     init:
       mode: always
 
-#jwt:
-  #expirationTime: 3600000
- # secretKey: emcarrental
 
 
 

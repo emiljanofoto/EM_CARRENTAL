@@ -11,8 +11,8 @@ public class CarDTO {
     private Long id;
     private String brand;
     private String model;
-    private int year;
+    private Integer year;
     private String color;
-    private boolean isAvailable;
+    private Boolean isAvailable;
 
 }

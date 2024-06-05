@@ -32,14 +32,13 @@ public class Order {
     @Column(name = "date_to", nullable = false)
     private LocalTime dateTo;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "car_id", referencedColumnName = "id")
-    private Car car;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "car_id", nullable = false)
+    private Long carId;
 
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
 
     
 }

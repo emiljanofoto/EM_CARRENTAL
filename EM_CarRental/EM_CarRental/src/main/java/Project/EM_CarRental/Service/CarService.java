@@ -62,7 +62,7 @@ public class CarService {
         carEdited.setModel(carDTO.getModel());
         carEdited.setYear(carDTO.getYear());
         carEdited.setColor(carDTO.getColor());
-        carEdited.setAvailable(carDTO.isAvailable());
+        carEdited.setIsAvailable(carDTO.getIsAvailable());
         return carRepository.save(carEdited);
 
     }

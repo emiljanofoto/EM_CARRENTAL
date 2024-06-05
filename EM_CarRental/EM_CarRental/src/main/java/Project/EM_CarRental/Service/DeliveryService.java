@@ -46,7 +46,8 @@ public class DeliveryService {
             LocalDateTime end = LocalDateTime.now()
                     .plusDays(user.getOrderNumber().getDays());
 
-            Order order = new Order(ID , user.getId(), car.getId(), car.getBrand(), car.getModel(), start, end);
+            Order order = new Order();
+
             orderRepository.save(order);
 
         }

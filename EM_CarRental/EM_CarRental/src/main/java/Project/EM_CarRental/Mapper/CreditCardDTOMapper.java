@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreditCardDTOMapper {
 
-    public CreditCard mapToCreditCard(CreditCardDTO creditCardDTO) {
+    public static CreditCard mapToCreditCard(CreditCardDTO creditCardDTO) {
 
         return CreditCard.builder()
                 .cardNumber(creditCardDTO.getCardNumber())
