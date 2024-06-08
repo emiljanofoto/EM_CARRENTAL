@@ -7,6 +7,7 @@ import Project.EM_CarRental.Entities.Car;
 import Project.EM_CarRental.Entities.CarCategory;
 import Project.EM_CarRental.Entities.CarPackage;
 import Project.EM_CarRental.Service.CarService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cars")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CarController {
 
-    private final CarService carService;
+    private  CarService carService;
 
     @GetMapping("/cars")
     public List<Car> getAllCars(@RequestParam(required = false) Sort.Direction sort) {
@@ -60,7 +60,7 @@ public class CarController {
     }
 
     @GetMapping("/cars/packages")
-    public List<CarPackage> getCarsByPackage() {
+    public List<CarPackage> getCarsPackage() {
         return carService.getCarPackage();
 
     }

@@ -31,7 +31,6 @@ import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZ
 public class CarService {
     private final CarRepository carRepository;
     private final CarPackageRepository carPackageRepository;
-    private final CarService carService;
     private final CarCategoryRepository carCategoryRepository;
 
     public List<Car> getAllCars() {
@@ -102,10 +101,10 @@ public class CarService {
     }
 
     public void deleteCarPackage(Long id) {
-        if(carPackageRepository.findById(id).isEmpty()){
+        if(!carPackageRepository.existsById(id)){
             throw new EntityNotFoundException("Car Package Not Found");
         }
-        CarPackage carPackage = carPackageRepository.getById(id);
+        CarPackage carPackage = carPackageRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Car Package Not Found"));
         Collection<Car>cars = carPackage.getCars();
         for(Car car : cars){
             car.setCarPackage(null);
