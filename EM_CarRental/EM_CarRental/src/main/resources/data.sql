@@ -1,4 +1,5 @@
 
+USE em_carrental;
 
 INSERT INTO role VALUES (1, 'ROLE_USER');
 INSERT INTO role VALUES (2, 'ROLE_MANAGER');

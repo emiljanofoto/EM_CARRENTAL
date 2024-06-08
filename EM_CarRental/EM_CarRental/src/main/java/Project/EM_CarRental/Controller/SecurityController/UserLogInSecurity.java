@@ -1,5 +1,4 @@
-package Project.EM_CarRental.Security;
-
+package Project.EM_CarRental.Controller.SecurityController;
 
 import Project.EM_CarRental.Entities.User;
 import Project.EM_CarRental.Repository.UserRepository;

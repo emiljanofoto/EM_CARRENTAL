@@ -11,16 +11,13 @@ import Project.EM_CarRental.Repository.RoleRepository;
 import Project.EM_CarRental.Repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.List;
 
 import static Project.EM_CarRental.Mapper.CreditCardDTOMapper.mapToCreditCard;
@@ -28,7 +25,7 @@ import static Project.EM_CarRental.Mapper.CreditCardDTOMapper.mapToCreditCard;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
 
     private final UserRepository userRepository;
@@ -36,16 +33,7 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final CreditCardRepository creditCardRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("UserName not found!"));
 
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
-
-    }
 
     public UserDTO saveUser(UserDTO userDTO) {
         if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
@@ -75,7 +63,7 @@ public class UserService implements UserDetailsService {
     }
 
     public Role saveRole(Role role) {
-        if (roleRepository.findByName(role.getName()).isEmpty()) {
+        if (roleRepository.findByRole(role.getRole()).isEmpty()) {
             throw new UsernameNotFoundException("Role not found!");
         }
         return roleRepository.save(role);
@@ -84,13 +72,13 @@ public class UserService implements UserDetailsService {
 
     public User addRoleToUser(String username, String roleName) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
-        Role role = roleRepository.findByName(roleName).orElseThrow(() -> new UsernameNotFoundException("Role not found!"));
+        Role role = roleRepository.findByRole(roleName).orElseThrow(() -> new UsernameNotFoundException("Role not found!"));
         if (user.getRoles().contains(role)) {
             throw new UsernameNotFoundException("Role already exists for the user!");
 
         }
         user.getRoles().add(role);
-        role.getUsers().add(user);
+        //role.getUsers().add(user);
         return userRepository.save(user);
 
 
@@ -98,10 +86,10 @@ public class UserService implements UserDetailsService {
 
     public void removeRoleFromUser(String username, String roleName) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
-        Role role = roleRepository.findByName(roleName).orElseThrow(() -> new UsernameNotFoundException("Role not found!"));
+        Role role = roleRepository.findByRole(roleName).orElseThrow(() -> new UsernameNotFoundException("Role not found!"));
 
         user.getRoles().remove(role);
-        role.getUsers().remove(user);
+       // role.getUsers().remove(user);
     }
 
 

@@ -33,7 +33,6 @@ public class UserDTOMapper {
                 .email(userDTO.getEmail())
                 .phone(userDTO.getPhone())
                 .creditCard(CREDIT_CARD)
-                .roles(new ArrayList<>())
                 .build();
     }
 }
