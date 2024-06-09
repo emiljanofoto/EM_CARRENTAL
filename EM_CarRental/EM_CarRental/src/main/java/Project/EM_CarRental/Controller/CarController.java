@@ -71,7 +71,7 @@ public class CarController {
     }
 
     @PostMapping("/cars/packages")
-    public CarPackage saveCarPackage(CarPackageDTO carPackageDTO) {
+    public CarPackage saveCarPackage(@RequestBody CarPackageDTO carPackageDTO) {
         return carService.saveCarPackage(carPackageDTO);
     }
 
