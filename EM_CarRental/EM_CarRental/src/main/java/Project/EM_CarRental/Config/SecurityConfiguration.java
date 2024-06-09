@@ -37,7 +37,19 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+//                      .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/users/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/users/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/users/**").hasAnyAuthority("ROLE_MANAGER, ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users/**").hasAnyAuthority("ROLE_MANAGER, ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/cars/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/cars/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/cars/**").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/cars/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/orders/").hasAnyAuthority("ROLE_MANAGER, ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/orders/").hasAnyAuthority("ROLE_USER")
+                        .requestMatchers("/payment/**", "/delivery/**").hasAnyAuthority("ROLE_USER")
+
                         .anyRequest().authenticated()).httpBasic(Customizer.withDefaults());
 
         return http.build();

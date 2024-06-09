@@ -1,11 +1,8 @@
 package Project.EM_CarRental.Entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Collection;
 
 @Entity
 @Getter

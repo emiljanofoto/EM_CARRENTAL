@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class CarDTO {
 
-    private Long id;
+
     private String brand;
     private String model;
     private Integer year;

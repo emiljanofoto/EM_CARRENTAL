@@ -18,7 +18,7 @@ public class UserDTOMapper {
 
     public static List<UserDTO> mapUserToUserDTO(List<User> users) {
         return users.stream()
-                .map(user -> new UserDTO(user.getId(), user.getName(),
+                .map(user -> new UserDTO( user.getId(),user.getName(),
                         user.getLastname(), user.getUsername(), user.getPassword(),
                         user.getEmail(), user.getPhone())).collect(Collectors.toList());
     }
